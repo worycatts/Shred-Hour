@@ -6,4 +6,10 @@ import urllib3
 
 
 http = urllib3.PoolManager()
-r = http.request('GET', 'https://www.mtbproject.com/data/get-trails?lat=LAT&lon=LONG&maxDistance=60&key=auth')
+r = http.request('GET', 'https://www.mtbproject.com/data/get-trails?lat=LAT&lon=LONG&maxDistance=60&key=rideauth')
+print(r.data)
+
+darkskyapi = "https://api.darksky.net/forecast/weatherauth/LAT,LONG,TIME"
+forecast = http.request('GET', darkskyapi)
+
+print(forecast.data)
