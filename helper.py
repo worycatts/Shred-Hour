@@ -44,3 +44,18 @@ def get_weather(weather_auth, lat, long):
     return http.request('GET', "https://api.darksky.net/forecast/%s/%s,%s" % (weather_auth, lat, long))
 
 
+def remove_duplicates(list_of_trails):
+    # removing duplicate trail locations
+    local_trails = []
+    trail_locations = []
+
+    # loops thru trails
+    for trail in list_of_trails:
+        # compares trail['location'] to list of trail | if trail exists in trails, don't add it again
+        if trail.get('location') not in trail_locations:
+            local_trails.append(trail)
+            trail_locations.append(trail.get('location'))
+
+    return local_trails
+
+
