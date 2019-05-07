@@ -25,19 +25,20 @@ long = (cfg['profile']['longitude'])
 dist = (cfg['profile']['distance'])
 
 # getting trails based on your latitude, longitude, preferred distance
-trails = get_trails(lat, long, dist, mtbauth)
+trails = get_trails(lat, long, dist, mtbauth).get('trails')
 # list of trails
-trails = trails.get('trails')
 
+local_trails = []
+trail_locations = []
 
+# removing duplicate trail locations
 for trail in trails:
-    local_trails =[]
-    if trail['location'] not in local_trails:
+    if trail['location'] not in trail_locations:
         local_trails.append(trail)
-    print(local_trails)
+        trail_locations.append(trail['location'])
     print(trail['name'], " - ", trail['location'])
 
-print('====')
+print(local_trails)
 
 """
 print(get_trails(lat, long, dist, mtbauth))

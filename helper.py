@@ -1,6 +1,6 @@
+import json
 import urllib3
 import yaml
-from pandas import json
 from uszipcode import SearchEngine
 
 
@@ -18,7 +18,8 @@ def write_config(data):
 
 
 def get_zipcode_data(zipcode):
-    search = SearchEngine(simple_zipcode=True) # set simple_zipcode=False to use rich info database
+    # set simple_zipcode=False to use rich info database
+    search = SearchEngine(simple_zipcode=True)
     data = search.by_zipcode(str(zipcode))
     return data
 
