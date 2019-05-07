@@ -24,11 +24,20 @@ lat = (cfg['profile']['latitude'])
 long = (cfg['profile']['longitude'])
 dist = (cfg['profile']['distance'])
 
+# getting trails based on your latitude, longitude, preferred distance
 trails = get_trails(lat, long, dist, mtbauth)
-print(trails)
-print("---------")
-print(trails.values())
+# list of trails
+trails = trails.get('trails')
 
+
+for trail in trails:
+    local_trails =[]
+    if trail['location'] not in local_trails:
+        local_trails.append(trail)
+    print(local_trails)
+    print(trail['name'], " - ", trail['location'])
+
+print('====')
 
 """
 print(get_trails(lat, long, dist, mtbauth))
